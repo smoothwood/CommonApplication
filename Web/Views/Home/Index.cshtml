@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Upload";
+}
+<script type="text/javascript" src="~/js/jquery-3.3.1.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="~/js/plupload-2.3.6/js/plupload.full.min.js" charset="UTF-8"></script>
+
+<div class="text-center">
+    <h1 class="display-4">Upload Demo</h1>
+    <div id="filelist">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
+    <br />
+
+    <div id="container">
+        <a id="pickfiles" href="javascript:;">[Select files]</a>
+        <a id="uploadfiles" href="javascript:;">[Upload files]</a>
+    </div>
+
+    <br />
+<pre id="console"></pre>
+
+
+    <script type="text/javascript">
+        var uploader = new plupload.Uploader({
+            runtimes: 'html5,flash,silverlight,html4',
+
+            browse_button: 'pickfiles', // you can pass in id...
+            container: document.getElementById('container'), // ... or DOM Element itself
+            multi_selection: false,
+            url: "/Upload/Up",
+            
+            filters: {
+                max_file_size: '200mb',
+                mime_types: [
+                    //{ title: "Image files", extensions: "jpg,gif,png" },
+                    //{ title: "Zip files", extensions: "zip" }
+                ]
+            },
+            headers: {
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwibmFtZWlkIjoieWNtQG91dGxvb2suY29tIiwiZ2l2ZW5fbmFtZSI6IuS4nuawkSIsImZhbWlseV9uYW1lIjoi5p2oIiwiUG9ydGFpdCI6IiIsImdlbmRlciI6IiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiIiwiZW1haWwiOiJ5Y21Ab3V0bG9vay5jb20iLCJyb2xlIjpbIkFkbWluIiwiRW1wbG95ZWUiXSwibmJmIjoxNTUwMjMxOTc3LCJleHAiOjE1NTA4MzY3NzcsImlhdCI6MTU1MDIzMTk3NywiaXNzIjoiY29tZXMudGVjaCIsImF1ZCI6ImNvbWVzLnRlY2gifQ.7NrUrELpPAy9tGZ4snpLosLm_rJ4-fg05Dm7UACVvlY"
+            },
+            // Flash settings
+            flash_swf_url: '/plupload/js/Moxie.swf',
+
+            // Silverlight settings
+            silverlight_xap_url: '/plupload/js/Moxie.xap',
+
+
+            init: {
+                PostInit: function () {
+                    document.getElementById('filelist').innerHTML = '';
+
+                    document.getElementById('uploadfiles').onclick = function () {
+                        uploader.start();
+                        return false;
+                    };
+                },
+
+                FilesAdded: function (up, files) {
+                    plupload.each(files, function (file) {
+                        document.getElementById('filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+                    });
+                },
+
+                UploadProgress: function (up, file) {
+                    document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+                },
+
+                FileUploaded: function (up, file, info) {
+                    alert(JSON.stringify(info));
+                },
+
+                Error: function (up, err) {
+                    document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+                }
+            }
+        });
+
+        uploader.init();
+
+    </script>
+
+</div>

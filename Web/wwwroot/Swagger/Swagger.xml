@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Web</name>
+    </assembly>
+    <members>
+        <member name="T:Web.Controllers.AccountController">
+            <summary>
+            Controller for validating user and return the JWT token
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.AccountController.#ctor(Core.Interfaces.IAuthService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="authService"></param>
+        </member>
+        <member name="M:Web.Controllers.AccountController.Login">
+            <summary>
+            Pass loginId and password to validate user
+            </summary>
+            <returns>JWT token</returns>
+        </member>
+        <member name="T:Web.Controllers.ArticleCategoryController">
+            <summary>
+            Controller for article and category
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.#ctor(Core.Interfaces.IArticleCategoryService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="articleCategoryService"></param>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.ListCategories">
+            <summary>
+            List all categories
+            </summary>
+            <returns>Category list</returns>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.GetCategory(System.Int32)">
+            <summary>
+            Get details of a single category
+            </summary>
+            <param name="categoryId">Category id</param>
+            <returns>Category</returns>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.ListSubCategories(System.Int32)">
+            <summary>
+            List all subcategories based on parent category id
+            </summary>
+            <param name="parentCategoryId">Parent category id</param>
+            <returns>Subcategory list</returns>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.AddCategory">
+            <summary>
+            Add a new category
+            Include categoryName and description in POST
+            </summary>
+            <returns>Json object with category id and category name</returns>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.UpdateCategory">
+            <summary>
+            Update an existing category
+            Include categoryId, categoryName and description in POST
+            </summary>
+            <returns>Json object with category id and category name</returns>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.DeleteCategory">
+            <summary>
+            Delete a existing cateogry
+            Include categoryId in POST
+            </summary>
+            <returns>Json object with category id and category name</returns>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.ListArticles">
+            <summary>
+            List all articles
+            Include skip, take in POST for server side pagination, categoryId is optional 
+            </summary>
+            <returns>Json object with article list and total record number</returns>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.GetArticle(System.Int32)">
+            <summary>
+            Get details of a single article
+            </summary>
+            <param name="articleId">Article id</param>
+            <returns>ArticleDTO</returns>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.AddArticle">
+            <summary>
+            Add a new article
+            Include title, decription, contentUrl, imageUrl and categoryId in POST
+            </summary>
+            <returns>Json object with article id and title</returns>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.UpdateArticle">
+            <summary>
+            Update an existing article
+            Include articleId, title, decription, contentUrl, imageUrl and categoryId in POST
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Controllers.ArticleCategoryController.DeleteArticle">
+            <summary>
+            Delete an existing article
+            Include articleId in POST
+            </summary>
+            <returns>Json object with article id and title</returns>
+        </member>
+        <member name="T:Web.Controllers.HomeController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.HomeController.Index">
+            <summary>
+            Demo for upload, take a look
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Controllers.HomeController.Privacy">
+            <summary>
+            You DON'T need to bother with this action
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Controllers.HomeController.Error">
+            <summary>
+            You DON'T need to bother with this action
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Controllers.UploadController">
+            <summary>
+            Controller for uploading file
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.UploadController.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Controller
+            </summary>
+            <param name="env"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Web.Controllers.UploadController.Upload">
+            <summary>
+            Save uploaded file to configured path
+            Demo is in Views/Home/Index
+            </summary>
+            <returns>Json object with status and/or filename</returns>
+        </member>
+        <member name="M:Web.Controllers.UploadController.Remove">
+            <summary>
+            Delete a existing file from configured path
+            </summary>
+        </member>
+        <member name="T:Web.Controllers.UserRoleController">
+            <summary>
+            Controller for user and role
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.UserRoleController.#ctor(Core.Interfaces.IUserRoleService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="userRoleService"></param>
+        </member>
+        <member name="M:Web.Controllers.UserRoleController.ListRoles">
+            <summary>
+            List all roles
+            </summary>
+            <returns>Role list</returns>
+        </member>
+        <member name="M:Web.Controllers.UserRoleController.GetRole(System.Int32)">
+            <summary>
+            Get details of a single role based on roleId
+            </summary>
+            <param name="roleId">Role id</param>
+            <returns>Role</returns>
+        </member>
+        <member name="M:Web.Controllers.UserRoleController.AddRole">
+            <summary>
+            Add a new role
+            Include roleName and description in POST
+            </summary>
+            <returns>Json object with roleId and roleName</returns>
+        </member>
+        <member name="M:Web.Controllers.UserRoleController.UpdateRole">
+            <summary>
+            Update an existing role
+            Include roleId, roleName, description in POST
+            </summary>
+            <returns>Json object with roleId and roleName</returns>
+        </member>
+        <member name="M:Web.Controllers.UserRoleController.DeleteRole">
+            <summary>
+            Delete an existing role
+            Include roleId in POST
+            </summary>
+            <returns>Json object with roleId and roleName</returns>
+        </member>
+        <member name="M:Web.Controllers.UserRoleController.ListUsers">
+            <summary>
+            Get all users
+            Include skip and take for server side pagination, roleId is optional
+            </summary>
+            <returns>UserDTO</returns>
+        </member>
+        <member name="M:Web.Controllers.UserRoleController.GetUser(System.Int32)">
+            <summary>
+            Get details of a single user
+            </summary>
+            <param name="userId">User id</param>
+            <returns>UserDTO</returns>
+        </member>
+        <member name="M:Web.Controllers.UserRoleController.AddUser">
+            <summary>
+            Add a new user
+            Include loginId, active, email, firstName, lastname, password, phoneNumber, portait in POST
+            </summary>
+            <returns>Json object with userId and loginId</returns>
+        </member>
+        <member name="M:Web.Controllers.UserRoleController.UpdateUser">
+            <summary>
+            Update an existing user
+            Include userId, loginId, active, email, firstName, lastname, password, phoneNumber, portait in POST
+            </summary>
+            <returns>Json object with userId and loginId</returns>
+        </member>
+        <member name="M:Web.Controllers.UserRoleController.DeleteUser">
+            <summary>
+            Delete an existing user
+            Include userId in POST
+            </summary>
+            <returns>Json object with userId and loginId</returns>
+        </member>
+        <member name="T:Web.Migrations.InitialCreate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:Web.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="T:Web.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Web.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+            <param name="env"></param>
+        </member>
+        <member name="P:Web.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Web.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>
